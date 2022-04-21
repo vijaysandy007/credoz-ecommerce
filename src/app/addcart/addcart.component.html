@@ -1,0 +1,117 @@
+<div class="w3l_banner_nav_right">
+    <!-- about -->
+    <div class="privacy about">
+        <h3>Chec<span>kout</span></h3>
+        <p>{{msg}}</p>
+        <div class="checkout-right" >
+            <h4>Your shopping cart contains: <span>{{productArray.length}} Products  </span></h4>
+            <span ></span>
+            <table class="timetable_sub"  #id>
+                <thead >
+                    <tr>
+                        <th>SL No.</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Product Name</th>
+
+                        <th>Price</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="rem1" *ngFor="let cart of productArray ; index as i ">
+                        <td class="invert">{{i+1}}</td>
+                        <td class="invert-image"><a ><img src="{{cart.productdetials[0].pdtImgPath}}" alt=""
+                                    class="img-responsive" routerLink="/proddetial/{{cart.productdetials[0]._id}}"></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus"  (click)="minusCart(cart._id, cart.cartPdtQty-1, cart.productdetials[0].pdtPrice)" >&nbsp;</div>
+                                    
+                                    <div class="entry value"><span style="background-color: seashell; color: black;">{{cart.cartPdtQty}}</span></div>
+                                    <div class="entry value-plus active" (click)="updateCart(cart._id, cart.cartPdtQty+1, cart.productdetials[0].pdtPrice)" >&nbsp;</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="invert">{{cart.productdetials[0].pdtName}}</td>
+
+                        <td class="invert">{{cart.cartpdtPrice |currency:"INR"}}</td>
+                        <td class="invert">
+                            <div class="rem">
+                                <div class="close1" (click)="removeCart(cart._id)"> </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="checkout-left">
+            <div class="col-md-4 checkout-left-basket">
+                <h4>Continue to basket</h4>
+                <ul>
+                    <li *ngFor="let cartDetial of productArray ">{{cartDetial.productdetials[0].pdtName}}<i>-</i> <span>{{cartDetial.cartpdtPrice |currency:"INR"}}</span></li>
+                    
+                    <li>Deliver Charges <i>-</i> <span>50 Rs</span></li>
+                    <li>Total <i>-</i> <span>{{myCartFinalPrice | currency:"INR"}}</span></li>
+                </ul>
+            </div>
+            <div class="col-md-8 address_form_agile">
+                <h4>Add a new Details</h4>
+                <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+                    <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                        <div class="information-wrapper">
+                            <div class="first-row form-group">
+                                <div class="controls">
+                                    <label class="control-label">Full name: </label>
+                                    <input class="billing-address-name form-control" type="text" name="name"
+                                        placeholder="Full name">
+                                </div>
+                                <div class="w3_agileits_card_number_grids">
+                                    <div class="w3_agileits_card_number_grid_left">
+                                        <div class="controls">
+                                            <label class="control-label">Mobile number:</label>
+                                            <input class="form-control" type="text" placeholder="Mobile number">
+                                        </div>
+                                    </div>
+                                    <div class="w3_agileits_card_number_grid_right">
+                                        <div class="controls">
+                                            <label class="control-label">Landmark: </label>
+                                            <input class="form-control" type="text" placeholder="Landmark">
+                                        </div>
+                                    </div>
+                                    <div class="clear"> </div>
+                                </div>
+                                <div class="controls">
+                                    <label class="control-label">Town/City: </label>
+                                    <input class="form-control" type="text" placeholder="Town/City">
+                                </div>
+                                <div class="controls">
+                                    <label class="control-label">Address type: </label>
+                                    <select class="form-control option-w3ls">
+                                        <option>Office</option>
+                                        <option>Home</option>
+                                        <option>Commercial</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="submit check_out">Delivery to this Address</button>
+                        </div>
+                    </section>
+                </form>
+                <div class="checkout-right-basket">
+                    <a routerLink="/auth/payment">Make a Payment <span class="glyphicon glyphicon-chevron-right"
+                            aria-hidden="true"></span></a>
+                </div>
+            </div>
+
+            <div class="clearfix"> </div>
+
+        </div>
+
+    </div>
+    <!-- //about -->
+</div>
+<div class="clearfix"></div>

@@ -1,0 +1,116 @@
+<div class="w3l_banner_nav_right">
+  <!-- login -->
+  <div class="w3_login">
+
+    <h3>Sign In & Sign Up</h3>
+    <div class="w3_login_module">
+
+      <div class="module form-module">
+        <h4>{{msg}}</h4>
+        <form [formGroup]="loginForm" (submit)="loginBtn()">
+          <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+
+            <div class="tooltip">Click Me</div>
+          </div>
+          <div class="form">
+            <h2>Login to your account</h2>
+            <!-- <form action="#" method="post"> -->
+            <input type="text" name="Username" ngModel formControlName="Username" placeholder="Username" required=" "
+              [(ngModel)]="fName" autocomplete="off">
+
+            <p class="alert alert-danger" *ngIf="usernameCtrl.errors?.required && usernameCtrl.touched">
+              Please Enter User Name
+            </p>
+            <p class="alert alert-danger" *ngIf="usernameCtrl.errors?.minlength">
+              Please Enter Minimum 3 Characters
+            </p>
+
+            <input type="password" name="Password" ngModel formControlName="Password" placeholder="Password"
+              required=" " [(ngModel)]="fPass" autocomplete="off">
+
+
+            <p class="alert alert-danger" *ngIf="passwordCtrl.errors?.required && passwordCtrl.touched">
+              Please Enter Password
+            </p>
+            <p class="alert alert-danger" *ngIf="passwordCtrl.errors?.minlength ">
+              Please Enter Minimum 3 Characters
+            </p>
+
+            <input type="submit" [disabled]="loginForm.invalid" value="Login">
+            <!-- </form> -->
+
+          </div>
+        </form>
+
+
+
+        <!-- Template Driven Form -->
+
+        <form (submit)="submitbtn(data)" #data="ngForm">
+          <div class="form">
+            <h2>Create an account</h2>
+            <h4>{{msg}}</h4>
+            <input type="text" name="Username" #userCheck ngModel placeholder="Username" required="" #Names="ngModel"
+              minlength="3" autocomplete="off" (blur)="userNameCheck(userCheck.value)" >
+
+              <!-- {{userOutput}} -->
+
+            <p class="alert alert-danger" *ngIf="Names.errors?.required && (Names.touched || Names.dirty)">
+              Please Enter UserName.
+            </p>
+
+          <p class="alert alert-danger" [hidden]="usernameAvailCheck">Username alredy taken</p>
+
+          <p class="alert alert-success" [hidden]="usernameNot">Congrats UserName Available</p>
+             
+            <p class="alert alert-danger" *ngIf="Names.touched && Names.errors?.minlength">
+              Please Enter Minimum 3 Characters
+            </p>
+
+
+            <input type="password" name="Password" ngModel placeholder="Password" required="" #Passwords="ngModel"
+              minlength="3" autocomplete="off">
+
+            <p class="alert alert-danger" *ngIf="Passwords.errors?.required && (Passwords.touched || Passwords.dirty)">
+              Please Enter Password
+            </p>
+
+            <p class="alert alert-danger" *ngIf="Passwords.touched && Passwords.errors?.minlength">
+              Please Enter Minimum 3 Characters
+            </p>
+
+            <input type="email" name="email" ngModel placeholder="Email Address" required="" #Emails="ngModel"
+              autocomplete="off">
+
+            <p class="alert alert-danger" *ngIf="Emails.errors?.required && (Emails.touched || Emails.dirty)">
+              Please Enter Email
+            </p>
+
+            <p class="alert alert-danger" *ngIf=" Emails.errors?.email  ">
+              Please Enter Valid Email
+            </p>
+
+            <input type="text" name="Phone" ngModel placeholder="Phone Number" required="" #Phones="ngModel"
+              minlength="10" autocomplete="off">
+
+            <p class="alert alert-danger" *ngIf="Phones.errors?.required && (Phones.touched || Phones.dirty)">
+              Please Enter Phone Number
+            </p>
+
+            <p class="alert alert-danger" *ngIf="Phones.touched && Phones.errors?.minlength">
+              Please Enter 10 Digit Phone Number
+            </p>
+
+
+            <button type="submit" class="btn btn-success" [disabled]="data.invalid || UsenameAvail" value="Register">Register</button>
+
+          </div>
+
+        </form>
+        <div class="cta"><a href="#">Forgot your password?</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- //login -->
+</div>
+<div class="clearfix"></div>

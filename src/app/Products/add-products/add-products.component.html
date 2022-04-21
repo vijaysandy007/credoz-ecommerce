@@ -1,0 +1,53 @@
+<!-- <button type="button" (click)="toggle()" class="btn btn-danger">{{buttonName}}</button> -->
+<div class="w3l_banner_nav_right">
+        
+    <div class="w3ls_w3l_banner_nav_right_grid">
+      <div class="w3ls_w3l_banner_nav_right_grid1">
+       
+        <h6>food</h6>
+
+         <p *ngIf="isLoading">
+           Loading....
+         </p>
+         
+         <ng-container *ngIf="!isLoading">
+           <p>{{msg}}</p> 
+          
+        <div class="col-md-3 w3ls_w3l_banner_left" *ngFor="let pdt of products | filter:searchText" >
+          <div class="hover14 column">
+          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+            <div class="agile_top_brand_left_grid_pos">
+              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
+            </div>
+            
+            <div class="agile_top_brand_left_grid1" >
+              
+              <figure>
+                
+                <div class="snipcart-item block" >
+                  <div class="snipcart-thumb" >
+                    <!-- *ngIf="show" -->
+
+                    <a ><img src="{{pdt.pdtImgPath}}" alt="" class="img-responsive" routerLink="/proddetial/{{pdt._id}}"/></a>
+                    <p>{{pdt.pdtName}}</p>
+                    <h4>{{pdt.pdtPrice | currency:"INR"}}</h4>
+                  </div>
+                  <div class="snipcart-details">
+                      <input type="button" name="submit" value="Add to cart" class="button" (click)="checkLogged(pdt._id,pdt.pdtPrice)" />
+                    
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+          </div>
+        </div>
+      </ng-container>
+
+        
+        <div class="clearfix"> </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="clearfix"></div>

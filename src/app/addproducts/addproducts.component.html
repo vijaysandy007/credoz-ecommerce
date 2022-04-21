@@ -1,0 +1,37 @@
+<div class="w3l_banner_nav_right">
+    <!-- <button type="button" style="text-align: center; padding-right: 40px;" class="btn btn-danger" routerLink="/auth/customer">Go Back To Dashboard</button> -->
+
+    <div class="w3_login">
+       
+        <h3>Add Products</h3>
+        <h4>{{msg}}</h4>
+        <div class="w3_login_module">
+            
+            <div class="module form-module">
+                <form (submit)="addProducts(formRef)" #formRef="ngForm">
+
+                <select name="catId" ngModel>
+
+                   <option value="">{{dropDown}}</option>
+                    
+                    <option *ngFor="let cat of categories" value="{{cat._id}}">
+                        {{cat.catName}}
+                    </option>
+
+                </select><br><br>
+
+                Produt Name <input type="text" name="pdtName" ngModel>
+                Price <input type="text" name="prodPrice" ngModel>
+                Upload Image <input type="file" name="prodImage" ngModel (change)="selectImage($event)"><br><br>
+                Product Description <input type="text" name="prodDesc" ngModel>
+                <input type="submit" value="Add Products">
+            </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="clearfix"></div>
